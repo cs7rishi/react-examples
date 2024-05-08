@@ -1,3 +1,11 @@
-div{
-    font-size: 100px;
+h1{
+    font-size: 80px;
+}
+
+h2{
+    font-size: 30px;
+}
+
+.active{
+    font-size : 100px
 }
