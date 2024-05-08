@@ -3,11 +3,17 @@ import "./App.css"
 
 //Use State with Arrays
 export const App2 = () => {
-    const [tasks, setTasks] = useState([
+
+    let [tasks, setTasks] = useState([
         { id: 5271, name: "Record React Lectures", completed: true },
         { id: 7825, name: "Edit React Lectures", completed: false },
         { id: 8391, name: "Watch Lectures", completed: false }
     ]);
+
+    function handleDelete(id){
+        setTasks(tasks.filter(t => t.id !== id));
+    }
+
     return (
         <div className="App">
             <h1>Task List</h1>
@@ -16,7 +22,7 @@ export const App2 = () => {
                     <li key={task.id}>
                         <span>{task.id} - {task.name}</span>
                         <p>{task.completed}</p>
-                        <button className="delete">Delete</button>
+                        <button onClick={() => handleDelete(task.id)} className="delete">Delete</button>
                     </li>
                 ))}
             </ul>
