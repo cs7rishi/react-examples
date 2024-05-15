@@ -3,13 +3,13 @@ import { useFetch } from "../hooks/useFetch";
 import Loading from "../assets/loading.gif"
 
 export const ProductList = () => {
-    const [url, setUrl] = useState("http://localhost:8080/product");
-    const { data: products, loading, error } = useFetch(url);
+    const [url, setUrl] = useState("http://localhost:8080/products");
+    const { data: products, loading, error } = useFetch(url, {content : "ABC"});
 
     return (
         <section>
             <div className="filter">
-                <button onClick={() => setUrl("http://localhost:8080/product")}>All</button>
+                <button onClick={() => setUrl("http://localhost:8080/products")}>All</button>
                 <button onClick={() => setUrl("http://localhost:8080/products?in_stock=1")}>In Stock Only</button>
             </div>
             {/* {loading && <p className="loading"><img src={Loading} alt="" /></p>} */}

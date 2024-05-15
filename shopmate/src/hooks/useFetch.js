@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-export const useFetch = (url) => {
+export const useFetch = (url, _body) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const body = useRef(_body)
 
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
             try{
                 const response = await fetch(url);
-                console.log(response)
                 if(!response.ok){
                     throw new Error(response.statusText)
                 }
-
+                console.log("useRef no loops");
                 const result = await response.json();
                 setData(result);
                 setError("");
