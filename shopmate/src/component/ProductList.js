@@ -3,17 +3,17 @@ import { useFetch } from "../hooks/useFetch";
 import Loading from "../assets/loading.gif"
 
 export const ProductList = () => {
-    // const [products, setProducts] = useState([]);
-    const [url, setUrl] = useState("http://localhost:8080/products");
-    const { data: products, loading } = useFetch(url);
+    const [url, setUrl] = useState("http://localhost:8080/product");
+    const { data: products, loading, error } = useFetch(url);
 
     return (
         <section>
             <div className="filter">
-                <button onClick={() => setUrl("http://localhost:8080/products")}>All</button>
+                <button onClick={() => setUrl("http://localhost:8080/product")}>All</button>
                 <button onClick={() => setUrl("http://localhost:8080/products?in_stock=1")}>In Stock Only</button>
             </div>
-            {loading && <p className="loading"><img src={Loading} alt="" /></p>}
+            {/* {loading && <p className="loading"><img src={Loading} alt="" /></p>} */}
+            {error && <p>{error}</p>}
             {products && products.map((p) => (
                 <div className="card" key={p.id}>
                     <p className="id">{p.id}</p>
