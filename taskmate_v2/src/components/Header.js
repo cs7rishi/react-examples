@@ -1,20 +1,31 @@
+import { useEffect, useState } from "react"
 import Logo from "../assets/logo.png"
 
 export const Header = () => {
+
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+
+  useEffect(() => {
+    document.documentElement.removeAttribute("class")
+    document.documentElement.classList.add(theme)
+
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
   return (
     <header>
-        <div className="logo">
-            <img src={Logo} alt="TaskMate Logo" />
-            <span>Taskmate</span>
-        </div>
-        <div className="themeSelector">
-            <span className="light"></span>
-            <span className="medium"></span>
-            <span className="dark activeTheme"></span>
-            <span className="gOne"></span>
-            <span className="gTwo"></span>
-            <span className="gThree"></span>
-        </div>
+      <div className="logo">
+        <img src={Logo} alt="TaskMate Logo" />
+        <span>Taskmate</span>
+      </div>
+      <div className="themeSelector">
+        <span onClick={() => setTheme("light")} className={`light ${theme === "light" ? "activeTheme" : ""}`}></span>
+        <span onClick={() => setTheme("medium")} className={`medium ${theme === "medium" ? "activeTheme" : ""}`}></span>
+        <span onClick={() => setTheme("dark")} className={`dark ${theme === "dark" ? "activeTheme" : ""}`}></span>
+        <span onClick={() => setTheme("gOne")} className={`gOne ${theme === "gOne" ? "activeTheme" : ""}`}></span>
+        <span onClick={() => setTheme("gTwo")} className={`gTwo ${theme === "gTwo" ? "activeTheme" : ""}`}></span>
+        <span onClick={() => setTheme("gThree")} className={`gThree ${theme === "gThree" ? "activeTheme" : ""}`}></span>
+      </div>
     </header>
   )
 }
