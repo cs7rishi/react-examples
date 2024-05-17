@@ -7,6 +7,7 @@ import { ProductList } from "./components/ProductList";
 import { Home } from "./components/Home";
 import { ProductDetail } from "./components/ProductDetail";
 import { Contact } from "./components/Contact";
+import { PageNotFound } from "./components/PageNotFound";
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/admin" element={admin ? <Admin/> : <Navigate to="/" />} />
-        <Route></Route>
+        <Route path="*" element={<PageNotFound title="404"/>}/>
       </Routes>
       <Footer />
     </div>
